@@ -1,0 +1,47 @@
+.input_area {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.input_area label {
+    text-transform: capitalize;
+    font-size: 0.97rem;
+    font-weight: 500;
+    color: hsl(187, 24%, 22%);
+}
+
+.input_area label::after {
+    content: ' *';
+    color: hsl(169, 82%, 27%);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.input_area input.without_error {
+    width: 100%;
+    height: 40px;
+    padding: 15px;
+    border: 2.3px solid hsl(186, 15%, 59%);
+    border-radius: 5px;
+}
+
+.input_area input.with_error {
+    width: 100%;
+    height: 40px;
+    padding: 15px;
+    border: 2.3px solid hsl(0, 66%, 56%);
+    border-radius: 5px;
+}
+
+.input_area input::placeholder {
+    color: hsl(187, 24%, 22%);
+    font-weight: 500;
+}
+
+.input_area p {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: hsl(0, 66%, 56%);
+}
