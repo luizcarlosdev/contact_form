@@ -1,5 +1,7 @@
 "use client";
 import { useState } from 'react';
+
+import SuccessMessage from '../SuccessMessage/SuccessMessage';
 import Styles from './Form.module.css';
 import Input from '../input/Input';
 import Email from '../email/Email';
@@ -18,6 +20,7 @@ export default function Form() {
     const [showErrorTextArea, setShowErrorTextArea] = useState<boolean>(false);
     const [checkboxValue, setCheckboxValue] = useState<boolean>(false);
     const [showErrorCheckbox, setShowErrorCheckbox] = useState<boolean>(false);
+    const [showMsgSent, setShowMsgSent] = useState<boolean>(false);
 
     function validityEmail(event: string) {
         setEmailError(true)
@@ -63,9 +66,15 @@ export default function Form() {
         } else {
             setShowErrorCheckbox(true);
         }
+        if ((name != '' && lastName != '' && emailValue != '' && radioError && textAreaValue != '' && checkboxValue === true)) {
+            setShowMsgSent(true);
+        } else {
+            setShowMsgSent(false)
+        }
     }
     return (
         <div className={Styles.form}>
+            <SuccessMessage showMsg={showMsgSent}/>
             <div className={Styles.form_header}>
                 <h1>contact us</h1>
             </div>
@@ -100,7 +109,7 @@ export default function Form() {
                 </div>
                 <div className={Styles.form_group_message}>
                     <label htmlFor="message_area">message</label>
-                    <textarea id="message_area" style={{ resize: 'none' }} onChange={(event) => setTextAreaValue(event.target.value)}></textarea>
+                    <textarea className={Styles[showErrorCheckbox ? 'text_area_with' : 'text_area_without']} id="message_area" style={{ resize: 'none' }} onChange={(event) => setTextAreaValue(event.target.value)}></textarea>
                     <p style={{display: (showErrorTextArea ? 'block' : 'none')}}>This field is required</p>
                 </div>
                 <div className={Styles.form_group_checkbox}>

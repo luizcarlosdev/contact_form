@@ -12,8 +12,8 @@ export default function Email(props: ItemsEmail) {
     return (
         <div className={`${Styles.input_area}`}>
             <label htmlFor="email">{props.label}</label>
-            <input type="text" className={`${Styles.without_error}`} id='email' placeholder='email@example.com' onChange={props.action}/>
-            <p style={{ display: (props.showMessageError ? 'block' : 'none') }}>
+            <input type="text" className={Styles[props.showMessageError ? 'with_error' :'without_error']} id='email' placeholder='email@example.com' onChange={props.action}/>
+            <p style={{ opacity: (props.showMessageError ? '1' : '0') }}>
                 Please enter a valid email adress
             </p>
         </div>

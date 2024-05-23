@@ -1,0 +1,52 @@
+/*
+    - Green 200 (lighter): hsl(148, 38%, 91%)
+    - Green 600 (medium): hsl(169, 82%, 27%)
+    - Red: hsl(0, 66%, 56%)
+    - White: hsl(0, 0%, 100%)
+    - Grey 500 (medium): hsl(186, 15%, 59%)
+    - Grey 900 (darker): hsl(187, 24%, 22%)
+*/
+
+.message {
+    position: absolute;
+    margin-top: 20px;
+    top: 32px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 100px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, .90fr);
+    gap: 10px;
+    background-color: hsl(187, 24%, 22%);
+    border-radius: 5px;
+    z-index: 1000;
+    transition: all .3s ease;
+}
+
+.message_header {
+    display: flex;
+    gap: 10px;
+}
+
+.message_header p {
+    color: hsl(0, 0%, 100%);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.message_header svg {
+    color: hsl(0, 0%, 100%);
+    font-size: 1.1rem;
+    font-weight: 200;
+}
+
+.message_body {
+    width: 100%;
+    color: hsl(0, 0%, 100%);
+    font-weight: 300;
+    font-size: 0.85rem;
+}
