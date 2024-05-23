@@ -16,3 +16,9 @@
     font-size: .95rem;
     color: hsl(187, 24%, 22%);
 }
+
+@media screen and (max-width: 768px) {
+    .radio label {
+        font-size: .75rem;
+    }
+}
