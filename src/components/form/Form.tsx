@@ -15,6 +15,9 @@ export default function Form() {
     const [radioError, setRadioError] = useState<boolean>(false);
     const [showRadioError, setShowRadioError] = useState<boolean>(false);
     const [textAreaValue, setTextAreaValue] = useState<string>('');
+    const [showErrorTextArea, setShowErrorTextArea] = useState<boolean>(false);
+    const [checkboxValue, setCheckboxValue] = useState<boolean>(false);
+    const [showErrorCheckbox, setShowErrorCheckbox] = useState<boolean>(false);
 
     function validityEmail(event: string) {
         setEmailError(true)
@@ -49,9 +52,16 @@ export default function Form() {
             setShowRadioError(true);
         }
         if (textAreaValue != '') {
+            setShowErrorTextArea(false);
             console.log(textAreaValue);
         } else {
-
+            setShowErrorTextArea(true);
+        }
+        if (checkboxValue === true) {
+            setShowErrorCheckbox(false);
+            console.log(checkboxValue);
+        } else {
+            setShowErrorCheckbox(true);
         }
     }
     return (
@@ -91,13 +101,14 @@ export default function Form() {
                 <div className={Styles.form_group_message}>
                     <label htmlFor="message_area">message</label>
                     <textarea id="message_area" style={{ resize: 'none' }} onChange={(event) => setTextAreaValue(event.target.value)}></textarea>
+                    <p style={{display: (showErrorTextArea ? 'block' : 'none')}}>This field is required</p>
                 </div>
                 <div className={Styles.form_group_checkbox}>
                     <div className={Styles.form_group_checkbox_header}>
-                        <input type="checkbox" id="consent" />
+                        <input type="checkbox" id="consent" onChange={(event) => setCheckboxValue(true)}/>
                         <label htmlFor="consent">i consent to being contacted by the team</label>
                     </div>
-                    <p style={{ display: 'none' }}>To submit this form, please consent to being contacted</p>
+                    <p style={{ display: (showErrorCheckbox ? 'block' : 'none') }}>To submit this form, please consent to being contacted</p>
                 </div>
             </div>
             <div className={Styles.submit}>

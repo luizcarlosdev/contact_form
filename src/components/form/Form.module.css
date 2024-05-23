@@ -109,6 +109,12 @@
     font-size: 1rem;
 }
 
+.form_group_message p {
+    font-size: .85rem;
+    font-weight: 500;
+    color: hsl(0, 66%, 56%);
+}
+
 .form_group_checkbox {
     display: grid;
     grid-template-columns: 1fr;
