@@ -1,20 +1,4 @@
-.radio_grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
-.radio_grid_header h4 {
-    text-transform: capitalize;
-    color: hsl(187, 24%, 22%);
-}
-
-.radio_grid_body {
-    width: 100%;
-}
-
-.radio_section {
+.radio {
     width: 100%;
     height: 40px;
     padding: 15px;
@@ -23,18 +7,12 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 7px;
+    gap: 10px;
 }
 
-.radio_section input[type='radio'] {
-    color: hsl(187, 24%, 22%);
-    height: 20px;
-    border-color: hsl(186, 15%, 59%);
-}
-
-.radio_section label {
+.radio label {
     text-transform: capitalize;
-    font-size: 0.95rem;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: .95rem;
     color: hsl(187, 24%, 22%);
 }

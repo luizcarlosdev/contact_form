@@ -9,10 +9,9 @@
 
 .form {
     width: 650px;
-    padding: 40px;
+    padding: 20px;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
     background-color: hsl(0, 0%, 100%);
     border-radius: 10px;
     box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.120);
@@ -23,6 +22,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    margin-bottom: 10px;
 }
 
 .form_header h1 {
@@ -51,5 +51,126 @@
 .form_group_radio {
     width: 100%;
     display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.form_group_radio_header label {
+    font-weight: 500;
+    color: hsl(187, 24%, 22%);
+    text-transform: capitalize;
+}
+
+.form_group_radio_header label::after {
+    content: " *";
+    color: hsl(169, 82%, 27%);
+    font-size: 1.2rem;
+}
+
+.form_group_radio_body {
+    width: 100%;
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.form_group_radio p {
+    font-size: .85rem;
+    color: hsl(0, 66%, 56%);
+    font-weight: 500;
+}
+
+.form_group_message {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.form_group_message label {
+    font-weight: 500;
+    color: hsl(187, 24%, 22%);
+    text-transform: capitalize;
+}
+
+.form_group_message label::after {
+    content: " *";
+    color: hsl(169, 82%, 27%);
+    font-size: 1.2rem;
+}
+
+.form_group_message textarea {
+    width: 100%;
+    height: 90px;
+    border: 2.3px solid hsl(186, 15%, 59%);
+    border-radius: 5px;
+    padding: 15px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.form_group_checkbox {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.form_group_checkbox_header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 15px;
+}
+
+.form_group_checkbox_header input[type='checkbox'] {
+    display: none;
+}
+
+.form_group_checkbox_header input[type='checkbox'] + label:before {
+    content: ' ';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2.3px solid hsl(186, 15%, 59%);
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 12px;
+    margin-bottom: 3px;
+}
+
+.form_group_checkbox_header input[type='checkbox']:checked + label:before {
+    background-image: url(../../assets/images/icon-checkbox-check.svg);
+    background-position: center;
+}
+
+.form_group_checkbox_header label {
+    vertical-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.form_group_checkbox p {
+    font-size: .85rem;
+    font-weight: 500;
+    color: hsl(0, 66%, 56%);
+}
+
+.submit {
+    margin-top: 12px;
+    width: 100%;
+}
+
+.submit button {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: hsl(148, 38%, 91%);
+    background-color:  hsl(169, 82%, 27%);
+    border-radius: 3px;
 }

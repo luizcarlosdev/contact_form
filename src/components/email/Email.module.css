@@ -25,6 +25,7 @@
     padding: 15px;
     border: 2.3px solid hsl(186, 15%, 59%);
     border-radius: 5px;
+    font-size: 1rem;
 }
 
 .input_area input.with_error {
@@ -33,6 +34,7 @@
     padding: 15px;
     border: 2.3px solid hsl(0, 66%, 56%);
     border-radius: 5px;
+    font-size: 1rem;
 }
 
 .input_area input::placeholder {

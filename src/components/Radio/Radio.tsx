@@ -1,22 +1,18 @@
+import { ChangeEventHandler, MouseEventHandler } from 'react';
 import Styles from './Radio.module.css';
 
 interface ItemsRadio {
     label: string;
     name: string;
+    id: string;
+    action: ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
-export default function Radio() {
+export default function Radio(props: ItemsRadio) {
     return (
-        <div className={Styles.radio_grid}>
-            <div className={Styles.radio_grid_header}>
-                <h4>query type</h4>
-            </div>
-            <div className={Styles.radio_grid_body}>
-                <div className={Styles.radio_section}>
-                    <input type="radio" name="" id="" />
-                    <label htmlFor="">general enquiry</label>
-                </div>
-            </div>
+        <div className={Styles.radio}>
+            <input type="radio" name="query_type" id={props.id} onChange={props.action}/>
+            <label htmlFor={props.id}>{props.label}</label>
         </div>
     )
 }

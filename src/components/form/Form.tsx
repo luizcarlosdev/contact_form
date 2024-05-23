@@ -1,10 +1,36 @@
-import {useState} from 'react';
+"use client";
+import { useState } from 'react';
 import Styles from './Form.module.css';
 import Input from '../input/Input';
 import Email from '../email/Email';
 import Radio from '../Radio/Radio';
 
 export default function Form() {
+    const [emailError, setEmailError] = useState<boolean>(false);
+    const [radioError, setRadioError] = useState<boolean>(false);
+    const [showRadioError, setShowRadioError] = useState<boolean>(false);
+    const [textAreaValue, setTextAreaValue] = useState<string>('');
+
+    function validityEmail(event: string) {
+        setEmailError(true)
+        const value = event;
+        if ((value.includes("@gmail") || value.includes("@outlook")) && value.endsWith(".com")) {
+            setEmailError(false);
+        }
+    }
+
+    function submitForm() {
+        if (radioError) {
+            setShowRadioError(false);
+        } else {
+            setShowRadioError(true)
+        }
+        if (textAreaValue != '') {
+            console.log(textAreaValue);
+        } else {
+
+        }
+    }
     return (
         <div className={Styles.form}>
             <div className={Styles.form_header}>
@@ -12,15 +38,36 @@ export default function Form() {
             </div>
             <div className={Styles.form_group}>
                 <div className={Styles.form_group_name}>
-                    <Input label='first name' type='text'/>
-                    <Input label='last name' type='text'/>
+                    <Input label='first name' type='text'  />
+                    <Input label='last name' type='text'  />
                 </div>
                 <div className={Styles.form_group_email}>
-                    <Email label='email adress' type='text'/>
+                    <Email label='email adress' type='text' showMessageError={emailError} action={(event) => validityEmail(event.target.value)} />
                 </div>
                 <div className={Styles.form_group_radio}>
-                    <Radio />
+                    <div className={Styles.form_group_radio_header}>
+                        <label>query type</label>
+                    </div>
+                    <div className={Styles.form_group_radio_body}>
+                        <Radio label='general enquiry' id='input_one' name='radio_query' action={(event) => setRadioError(true)} />
+                        <Radio label='support request' id='input_two' name='radio_query' action={(event) => setRadioError(true)} />
+                    </div>
+                    <p style={{ display: (showRadioError ? 'block' : 'none') }}>This field is required</p>
                 </div>
+                <div className={Styles.form_group_message}>
+                    <label htmlFor="message_area">message</label>
+                    <textarea id="message_area" style={{ resize: 'none' }} onChange={(event) => setTextAreaValue(event.target.value)}></textarea>
+                </div>
+                <div className={Styles.form_group_checkbox}>
+                    <div className={Styles.form_group_checkbox_header}>
+                        <input type="checkbox" id="consent" />
+                        <label htmlFor="consent">i consent to being contacted by the team</label>
+                    </div>
+                    <p style={{ display: 'none' }}>To submit this form, please consent to being contacted</p>
+                </div>
+            </div>
+            <div className={Styles.submit}>
+                <button onClick={submitForm}>submit</button>
             </div>
         </div>
     )
