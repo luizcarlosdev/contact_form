@@ -6,6 +6,11 @@ import Email from '../email/Email';
 import Radio from '../Radio/Radio';
 
 export default function Form() {
+    const [name, setName] = useState<string>('');
+    const [showMsgErrorName, setShowMsgErrorName] = useState<boolean>(false);
+    const [lastName, setLastName] = useState<string>('');
+    const [showMsgErrorLastName, setShowMsgErrorLastName] = useState<boolean>(false);
+    const [emailValue, setEmailValue] = useState<string>('');
     const [emailError, setEmailError] = useState<boolean>(false);
     const [radioError, setRadioError] = useState<boolean>(false);
     const [showRadioError, setShowRadioError] = useState<boolean>(false);
@@ -20,10 +25,28 @@ export default function Form() {
     }
 
     function submitForm() {
+        if (name != '') {
+            setShowMsgErrorName(false);
+            console.log(name);
+        } else {
+            setShowMsgErrorName(true);
+        }
+        if (lastName != '') {
+            setShowMsgErrorLastName(false);
+            console.log(lastName);
+        } else {
+            setShowMsgErrorLastName(true);
+        }
+        if (emailValue != '') {
+            setEmailError(false);
+            console.log(emailValue);
+        } else {
+            setEmailError(true);
+        }
         if (radioError) {
             setShowRadioError(false);
         } else {
-            setShowRadioError(true)
+            setShowRadioError(true);
         }
         if (textAreaValue != '') {
             console.log(textAreaValue);
@@ -38,11 +61,22 @@ export default function Form() {
             </div>
             <div className={Styles.form_group}>
                 <div className={Styles.form_group_name}>
-                    <Input label='first name' type='text'  />
-                    <Input label='last name' type='text'  />
+                    <Input
+                        label='first name'
+                        showMessageError={showMsgErrorName}
+                        type='text'
+                        action={(event) => setName(event.target.value)} />
+                    <Input
+                        label='last name'
+                        type='text'
+                        showMessageError={showMsgErrorLastName}
+                        action={(event) => { setLastName(event.target.value) }} />
                 </div>
                 <div className={Styles.form_group_email}>
-                    <Email label='email adress' type='text' showMessageError={emailError} action={(event) => validityEmail(event.target.value)} />
+                    <Email label='email adress' type='text' showMessageError={emailError} action={(event) => {
+                        validityEmail(event.target.value);
+                        setEmailValue(event.target.value)
+                    }} />
                 </div>
                 <div className={Styles.form_group_radio}>
                     <div className={Styles.form_group_radio_header}>
