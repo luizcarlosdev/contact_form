@@ -19,11 +19,17 @@ body {
 
 input {
   outline: none;
+  transition: all .3s ease;
 }
 
 input:focus, textarea:focus {
   background-color: hsl(148, 38%, 91%);
   border-color: hsl(169, 82%, 27%);
+}
+
+input:hover, textarea:hover {
+  background-color: hsl(148, 38%, 91%);
+  border-color:  hsl(169, 82%, 27%)!important;
 }
 
 .input-number::-webkit-inner-spin-button {

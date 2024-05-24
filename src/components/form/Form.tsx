@@ -22,6 +22,11 @@ export default function Form() {
     const [showErrorCheckbox, setShowErrorCheckbox] = useState<boolean>(false);
     const [showMsgSent, setShowMsgSent] = useState<boolean>(false);
 
+    const [finalNameValue, setFinalNameValue] = useState<string>('');
+    const [finalLastNameValue, setFinalLastNameValue] = useState<string>('');
+    const [finalEmailValue, setFinalEmailValue] = useState<string>('');
+    const [finalTextAreaValue, setFinalTextAreaValue] = useState<string>('');
+
     function validityEmail(event: string) {
         setEmailError(true)
         const value = event;
@@ -67,32 +72,38 @@ export default function Form() {
             setShowErrorCheckbox(true);
         }
         if ((name != '' && lastName != '' && emailValue != '' && radioError && textAreaValue != '' && checkboxValue === true)) {
+            setName(finalNameValue);
+            setLastName(finalLastNameValue);
+            setEmailValue(finalEmailValue);
+            setTextAreaValue(finalTextAreaValue);
             setShowMsgSent(true);
         } else {
-            setShowMsgSent(false)
+            setShowMsgSent(false);
         }
     }
     return (
         <div className={Styles.form}>
-            <SuccessMessage showMsg={showMsgSent}/>
+            <SuccessMessage showMsg={showMsgSent} action={() => window.location.reload()}/>
             <div className={Styles.form_header}>
                 <h1>contact us</h1>
             </div>
             <div className={Styles.form_group}>
                 <div className={Styles.form_group_name}>
                     <Input
+                        value={name}
                         label='first name'
                         showMessageError={showMsgErrorName}
                         type='text'
                         action={(event) => setName(event.target.value)} />
                     <Input
+                        value={lastName}
                         label='last name'
                         type='text'
                         showMessageError={showMsgErrorLastName}
                         action={(event) => { setLastName(event.target.value) }} />
                 </div>
                 <div className={Styles.form_group_email}>
-                    <Email label='email adress' type='text' showMessageError={emailError} action={(event) => {
+                    <Email label='email adress' type='text' value={emailValue} showMessageError={emailError} action={(event) => {
                         validityEmail(event.target.value);
                         setEmailValue(event.target.value)
                     }} />
@@ -109,19 +120,21 @@ export default function Form() {
                 </div>
                 <div className={Styles.form_group_message}>
                     <label htmlFor="message_area">message</label>
-                    <textarea className={Styles[showErrorCheckbox ? 'text_area_with' : 'text_area_without']} id="message_area" style={{ resize: 'none' }} onChange={(event) => setTextAreaValue(event.target.value)}></textarea>
-                    <p style={{display: (showErrorTextArea ? 'block' : 'none')}}>This field is required</p>
+                    <textarea className={Styles[showErrorTextArea ? 'text_area_with' : 'text_area_without']} id="message_area" value={textAreaValue} style={{ resize: 'none' }} onChange={(event) => setTextAreaValue(event.target.value)}></textarea>
+                    <p style={{ display: (showErrorTextArea ? 'block' : 'none') }}>This field is required</p>
                 </div>
                 <div className={Styles.form_group_checkbox}>
                     <div className={Styles.form_group_checkbox_header}>
-                        <input type="checkbox" id="consent" onChange={(event) => setCheckboxValue(true)}/>
+                        <input type="checkbox" id="consent" onChange={(event) => setCheckboxValue(true)} />
                         <label htmlFor="consent">i consent to being contacted by the team</label>
                     </div>
                     <p style={{ display: (showErrorCheckbox ? 'block' : 'none') }}>To submit this form, please consent to being contacted</p>
                 </div>
             </div>
             <div className={Styles.submit}>
-                <button onClick={submitForm}>submit</button>
+                <button onClick={() => {
+                    submitForm()
+                }}>submit</button>
             </div>
         </div>
     )
